@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Battle Game</title>
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+<h1>Battle Game</h1>
+<h3>Do you even battle?</h3>   
+<div class="container mt-4 mb-5">
+    <div class="row">
+        
+        <div class="col-xs-12 col-sm-12 col-md-6 container border border-secondary rounded bg-light border-right-0" id="fighter-select">
+            <h4 class="pt-2">Choose Your Fighter.</h4>
+            
+            <div class="row">
+                
+                <div class="col-xs-3 col-sm-6 col-md-6 fighter pr-1 pl-2" id="fighter-1">
+                    
+                    <div class="card mb-3 ">
+                        
+                        <img src="./assets/images/brawler.jpeg" class="card-img-top" alt="fighter">
+                        
+                        <div class="card-body p-1">
+                            
+                            <!-- Fighter 1 Name -->
+                            <h5 class="card-title text-center mb-0">Ozzy . . . <a href="#" class="btn btn-primary" id="brawler-btn-sel">Select</a></h5>
+                                
+                            <!-- Fighter 1 Description -->
+                            <p class="card-text m-0 p-0 text-center"><small class="text-muted"> Brawler...<br>from the City.</small></p>
+                                
+                        </div>
+                    </div>
+                   
+                </div>
+                <div class="col-xs-3 col-sm-6 col-md-6 fighter pl-1 pr-2" id="fighter-2">
+                    
+                    <div class="card mb-3 ">
+                       
+                        <img src="./assets/images/ninja.jpg" class="card-img-top" alt="fighter">
+                        <div class="card-body p-1">
+                            
+                            <!-- Fighter 2 Name -->
+                            <h5 class="card-title text-center mb-0">Tenz . . . <a href="#" class="btn btn-primary" id="ninja-btn-sel">Select</a></h5>
+                                
+                            <!-- Fighter 2 Description -->
+                            <p class="card-text m-0 p-0 text-center"><small class="text-muted"> Ninja...<br>from the Forest.</small></p>
+                                
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-3 col-sm-6 col-md-6 fighter  pr-1 pl-2" id="fighter-3">
+                    <div class="card mb-3 ">
+                                                
+                        <img src="./assets/images/gunner.jpg" class="card-img-top" alt="Hutch">
+                        <div class="card-body p-1">
+                        
+                            <!-- Fighter 3 Name -->
+                            <h5 class="card-title text-center mb-0">Hutch . . . <a href="#" class="btn btn-primary"id="gunner-btn-sel">Select</a></h5>
+                                
+                            <!-- Fighter 3 Description -->
+                            <p class="card-text m-0 p-0 text-center"><small class="text-muted"> Gunner...<br>from the Plains.</small></p>
+                                
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-6 col-md-6 fighter pl-1 pr-2" id="fighter-4">
+                    <div class="card mb-3 ">
+                        
+                        <img src="./assets/images/warrior.jpg" class="card-img-top" alt="fighter">
+                       
+                        <div class="card-body p-1">
+                            
+                            <!-- Fighter 4 Name -->
+                            <h5 class="card-title text-center mb-0">Jinx . . . <a href="#" class="btn btn-primary" id="warrior-btn-sel">Select</a></h5>
+                                
+                            <!-- Fighter 4 Description -->
+                            <p class="card-text m-0 p-0 text-center"><small class="text-muted"> Warrior...<br>from the Desert.</small></p>
+                                
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+<!-- STAGE SELECTION -->
+
+        <div class="col-xs-12 col-sm-12 col-md-6 container border border-secondary rounded bg-light" id="stage-select">
+            <h4 class="pt-2">Choose Your Stage.</h4>
+                
+            <div class="row">
+                    
+                <div class="col-xs-3 col-sm-6 col-md-6 stage pr-1 pl-2" id="stage-1">
+                        
+                    <div class="card mb-3 ">
+                            
+                        <img src="./assets/images/jungle.jpg" class="card-img-top" alt="Forest">
+                        <div class="card-body p-1">
+                                
+                            <!-- Stage 1 Name -->
+                            <h5 class="card-title text-center mb-0">Forest . . . <a href="#" class="btn btn-primary" id="forest-btn">Select</a></h5>
+                                    
+                            <!-- Stage 1 Description -->
+                            <p class="card-text m-0 p-0 text-center"><small class="text-muted"> Dark. Dense brush. <br>Creatures.</small></p>
+                                    
+                        </div>
+                    </div>
+                       
+                </div>
+                <div class="col-xs-3 col-sm-6 col-md-6 stage pl-1 pr-2" id="stage-2">
+                        
+                    <div class="card mb-3 ">
+                        
+                        <img src="./assets/images/plains.jpg" class="card-img-top" alt="Plains">
+                        
+                        <div class="card-body p-1">
+                                
+                            <!-- Stage 1 Name -->
+                            <h5 class="card-title text-center mb-0">Plains . . . <a href="#" class="btn btn-primary" id="plains-btn">Select</a></h5>
+                                    
+                            <!-- Stage 1 Description -->
+                            <p class="card-text m-0 p-0 text-center"><small class="text-muted"> Bright. Wide open. <br>Wilderness.</small></p>
+                                     
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+                
+            <div class="row">
+                <div class="col-xs-3 col-sm-6 col-md-6 stage pr-1 pl-2" id="stage-3">
+                    <div class="card mb-3 ">
+                         
+                        <img src="./assets/images/desert.jpg" class="card-img-top" alt="Desert">
+                    
+                        <div class="card-body p-1">
+                            
+                            <!-- Stage 3 Name -->
+                            <h5 class="card-title text-center mb-0">Desert . . . <a href="#" class="btn btn-primary" id="desert-btn">Select</a></h5>
+                                    
+                            <!-- Stage 3 Description -->
+                            <p class="card-text m-0 p-0 text-center"><small class="text-muted"> Bright. Sweeping Dunes. <br>Heat.</small></p>
+                                
+                       </div>
+
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-6 col-md-6 stage pl-1 pr-2" id="stage-4">
+                    <div class="card mb-3 ">
+                        
+                        <img src="./assets/images/city.jpg" class="card-img-top" alt="City">
+                        <div class="card-body p-1">
+                        
+                            <!-- Stage 4 Name -->
+                            <h5 class="card-title text-center mb-0">The City . . . <a href="#" class="btn btn-primary" id="city-btn">Select</a></h5>
+                                
+                            <!-- Stage 4 Description -->
+                            <p class="card-text m-0 p-0 text-center"><small class="text-muted"> Dark. Always Noisy.<br>Polluted.</small></p>
+                                    
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+
+    </div>
+
+</div>
+
+<!-- End of Fighter and Stage Select -->
+
+<div class="container" id="fighter-engage">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 chosen-fighters">    
+            <div class="row">
+                <div class="col p-1" id="player-1">
+                    <div class="card bg-primary text-white">
+                    
+                        <img src="./assets/images/filler1.jpg" class="card-img-top" id="fighter1" alt="#">
+                        <div class="card-body p-1">
+                        
+                            <!-- Player 1 Name -->
+                            <h5 class="card-title text-center mb-0" id="fighter1-name">TBD</h5>
+                                
+                            <!-- Player 1 Description -->
+                            <p class="card-text m-0 p-0 text-center"><small>HP: </small><span id="fighter1-hp"></span></small></p>
+                        
+                        </div>
+                    </div>
+                </div>
+                <div class="col p-1" id="player-2">
+                    <div class="card bg-primary text-white">
+                
+                        <img src="./assets/images/filler2.jpg" class="card-img-top" id="fighter2" alt="#">
+                        <div class="card-body p-1">
+                        
+                            <!-- Player 2 Name -->
+                            <h5 class="card-title text-center mb-0" id="fighter2-name">TBD</h5>
+                                
+                            <!-- Player 2 Description -->
+                            <p class="card-text m-0 p-0 text-center"><small>HP: </small><span id="fighter2-hp"></span></small></p>
+                                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xs-6 col-sm-6 col-md-3 p-1" id="fighting">
+            <div class="card bg-primary text-white">
+                
+                <div class="card-body">
+                    <h5 class="card-title text-center">Fight</h5>
+                    <span><a href="#" class="btn btn-warning px-1 border border-secondary" id="attack-btn">Attack</a>       <a href="#" class="btn btn-warning px-1 border border-secondary border-left-0" id="focus-btn">Focus</a></span>
+                    <p class="pt-3 mb-0"><small>Fight Stats: </small></p>
+                    <p id="fight-stats"><small>TBD</small></p>
+                </div>                            
+             </div>
+        </div>
+            
+        <div class="col-xs-6 col-sm-6 col-md-3 p-1" id="chosen-stage">
+            <div class="card bg-primary text-white">
+            
+                <img src="./assets/images/filler3.jpg" class="card-img-top" id="stage-pic" alt="#">
+                <div class="card-body p-1">
+                            
+                    <!-- Player 2 Name -->
+                    <h5 class="card-title text-center mb-0" id="stage-name">TBD</h5>
+                                    
+                    <!-- Player 2 Description -->
+                    <p class="card-text m-0 p-0 text-center"><small>Status: <span id="stage-hp">TBD</span></small></p>
+                                        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    <script src="./assets/js/app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>
