@@ -1,3 +1,14 @@
+// Start Game
+
+$("#start").on('click', function() {
+
+    // Clicking the button triggers an alert message.
+    $("div.hidden").toggleClass("hidden");
+    $("h3.hidden").toggleClass("hidden");
+  });
+
+// Fighters listed
+
 var ninja = {
     type: "fighter",
     name:"Tenz", 
@@ -5,11 +16,11 @@ var ninja = {
     home: forest,
     weakness: desert,
     advantage: "dark",
-    special: shurikens,
+    special: "shurikens",
     hp: 100,
-    hit: (Math.floor(Math.random() * 7.5) + 10),
-    crit: (Math.floor(Math.random() * 25) + 25)),
-    img: img
+    hit: (Math.ceil(Math.random() * 7.5) + 10),
+    crit: (Math.ceil(Math.random() * 25) + 25),
+    critChance: (Math.ceil(Math.random() * .3)),
 };
 
 var gunner = {
@@ -19,10 +30,11 @@ var gunner = {
     home: plains,
     weakness: forest,
     advantage: "bright",
-    special: twoShots,
+    special: "twoShots",
     hp: 90,
-    hit: (Math.floor(Math.random() * 10) + 10)),
-    crit: (Math.floor(Math.random() * 30) + 25)),
+    hit: (Math.ceil(Math.random() * 10) + 10),
+    crit: (Math.ceil(Math.random() * 30) + 25),
+    critChance: (Math.ceil(Math.random() * .3)),
 };
 
 var brawler = {
@@ -32,10 +44,11 @@ var brawler = {
     home: city,
     weakness: plains,
     advantage: "dark",
-    special: uppercut,
+    special: "uppercut",
     hp: 120,
-    hit: (Math.floor(Math.random() * 10) + 5)),
-    crit: (Math.floor(Math.random() * 20) + 25)),
+    hit: (Math.ceil(Math.random() * 10) + 5),
+    crit: (Math.ceil(Math.random() * 20) + 25),
+    critChance: (Math.ceil(Math.random() * .3)),
 };
 
 var warrior = {
@@ -45,58 +58,60 @@ var warrior = {
     home: desert,
     weakness: city,
     advantage: "bright",
-    special: whipLash,
+    special: "whipLash",
     hp: 110,
-    hit: (Math.floor(Math.random() * 7.5) + 7.5)),
-    crit: (Math.floor(Math.random() * 25) + 30)),
+    hit: (Math.ceil(Math.random() * 7.5) + 7.5),
+    crit: (Math.ceil(Math.random() * 25) + 30),
+    critChance: (Math.ceil(Math.random() * .3)),
 }
 
 var figher = [ninja, gunner, brawler, warrior];
 
-//random fighter placement
-
-
+// Stages listed
 
 var desert = {
-    type = "stage",
-    lighting = "bright",
-    home = warrior,
-    weakness = ninja,
+    type: "stage",
+    lighting: "bright",
+    home: warrior,
+    weakness: ninja,
+    hit: (Math.ceil(Math.random() * 5) + 2),
+    hitChance: (Math.ceil(Math.random() * .2)),
 }
 
 var city = {
-    type = "stage",
-    lighting = "dark",
-    home = brawler,
-    weakness = warrior,
+    type: "stage",
+    lighting: "dark",
+    home: brawler,
+    weakness: warrior,
+    hit: (Math.ceil(Math.random() * 3) + 3),
+    hitChance: (Math.ceil(Math.random() * .2)),
 }
 
 var plains = {
-    type = "stage",
-    lighting = "bright",
-    home = gunner,
-    weakness = brawler,
+    type: "stage",
+    lighting: "bright",
+    home: gunner,
+    weakness: brawler,
+    hit: (Math.ceil(Math.random() * 2)),
+    hitChance: (Math.ceil(Math.random() * .2)),
 }
 
 var forest = {
-    type = "stage",
-    lighting = "dark",
-    home = ninja,
-    weakness = gunner,
+    type: "stage",
+    lighting: "dark",
+    home: ninja,
+    weakness: gunner,
+    hit: (Math.ceil(Math.random() * 3) + 4),
+    hitChance: (Math.ceil(Math.random() * .2)),
 }
     
 var stage = [forest, plains, city, desert];
 
-var stageSelect =
+//Fighting scoring
 
-var player1 = if($())
+// var hitDamage = $(fighter[hit]);
 
-var critPct = if(){
-    ((Math.random() * .35);
-}
-var hitDamage = $(fighter[hit]);
+// var critPct = if(){
+//     (Math.random() * .35);
+// }
 
-
-
-
-$('#fighter-1').
