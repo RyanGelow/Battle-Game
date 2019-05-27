@@ -1,11 +1,74 @@
 // Start Game
 
-$("#start").on('click', function() {
+$("#start-game").on('click', function() {
 
     // Clicking the button triggers an alert message.
     $("div.hidden").toggleClass("hidden");
+    
+    //Select fighter and dark overlay on non-selection
+    $('#brawler-btn-sel, #ninja-btn-sel, #gunner-btn-sel, #warrior-btn-sel').click(function () {
+        if (this.id == 'brawler-btn-sel') {
+            $("#fighter-1 div.card").addClass("border-primary").removeClass("bg-secondary");
+            $("#fighter-2 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $("#fighter-3 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $("#fighter-4 div.card").addClass("bg-secondary").removeClass("border-primary");
+        }
+        else if (this.id == 'ninja-btn-sel') {
+            $("#fighter-2 div.card").addClass("border-primary").removeClass("bg-secondary");
+            $("#fighter-1 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $("#fighter-3 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $("#fighter-4 div.card").addClass("bg-secondary").removeClass("border-primary");
+        }
+        else if (this.id == 'gunner-btn-sel') {
+            $("#fighter-3 div.card").addClass("border-primary").removeClass("bg-secondary");
+            $("#fighter-2 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $("#fighter-1 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $("#fighter-4 div.card").addClass("bg-secondary").removeClass("border-primary");
+        }
+        else if (this.id == 'warrior-btn-sel') {
+            $("#fighter-4 div.card").addClass("border-primary").removeClass("bg-secondary");
+            $("#fighter-2 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $("#fighter-3 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $("#fighter-1 div.card").addClass("bg-secondary").removeClass("border-primary");
+        }
+    });
+     
+    //Move fighter to lower card
+    
+    //Select stage  and dark overlay on non-selection
+    $('#forest-btn-sel, #plains-btn-sel, #desert-btn-sel, #city-btn-sel').click(function () {
+        if (this.id == 'brawler-btn-sel') {
+            $("#fighter-1 div.card").addClass("border-primary").removeClass("bg-secondary");
+            $("#fighter-2 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $("#fighter-3 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $("#fighter-4 div.card").addClass("bg-secondary").removeClass("border-primary");
+        }
+        else if (this.id == 'ninja-btn-sel') {
+            $("#fighter-2 div.card").addClass("border-primary").removeClass("bg-secondary");
+            $("#fighter-1 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $("#fighter-3 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $("#fighter-4 div.card").addClass("bg-secondary").removeClass("border-primary");
+        }
+        else if (this.id == 'gunner-btn-sel') {
+            $("#fighter-3 div.card").addClass("border-primary").removeClass("bg-secondary");
+            $("#fighter-2 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $("#fighter-1 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $("#fighter-4 div.card").addClass("bg-secondary").removeClass("border-primary");
+        }
+        else if (this.id == 'warrior-btn-sel') {
+            $("#fighter-4 div.card").addClass("border-primary").removeClass("bg-secondary");
+            $("#fighter-2 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $("#fighter-3 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $("#fighter-1 div.card").addClass("bg-secondary").removeClass("border-primary");
+        }
+    });
+    //Move stage to lower card
+    
+    //Start Fight...
     $("h3.hidden").toggleClass("hidden");
-  });
+
+});
+
 
 // Fighters listed
 
@@ -106,6 +169,7 @@ var forest = {
 }
     
 var stage = [forest, plains, city, desert];
+
 
 //Fighting scoring
 
