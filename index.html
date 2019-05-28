@@ -11,8 +11,8 @@
 </head>
 <body>
 <h1>Battle Game</h1>
-<h3>Do you even battle? . . . Prove it . . . <a href="#" class="btn btn-primary" id="start-game">Start Game</a></h3>   
-<div class="container mt-4 mb-4 hidden">
+<h3 class="unhidden">Do you even battle? . . . Prove it . . . <a href="#" class="btn btn-primary" id="start-game">Start Game</a></h3>   
+<div class="container mt-4 mb-4 hidden unhidden">
     
     <div class="row">
         
@@ -179,7 +179,7 @@
 
 </div>
 
-<h3 class="hidden">Ready?  . . . Prove it . . . <a href="#" class="btn btn-primary" id="start-fight">Start Fight</a></h3> 
+<h3 class="hidden unhidden">Ready?  . . . Prove it . . . <a class="btn btn-primary text-white" id="start-fight">Start Fight</a></h3> 
 
 <!-- End of Fighter and Stage Select -->
 
@@ -194,7 +194,7 @@
                         <div class="card-body p-1">
                         
                             <!-- Player 1 Name -->
-                            <h5 class="card-title text-center mb-0" id="fighter1-name">TBD</h5>
+                            <h5 class="card-title text-center mb-0 player-selected" id="fighter1-name">TBD</h5>
                                 
                             <!-- Player 1 Description -->
                             <p class="card-text m-0 p-0 text-center"><small>HP: </small><span id="fighter1-hp"></span></small></p>
