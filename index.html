@@ -59,7 +59,7 @@
             </div>
             
             <div class="row">
-                <div class="col fighter  pr-1 pl-2" id="fighter-3">
+                <div class="col fighter pr-1 pl-2" id="fighter-3">
                     <div class="card mb-3 ">
                                                 
                         <img src="./assets/images/gunner.jpg" class="card-img-top" alt="Hutch">
@@ -194,7 +194,7 @@
                         <div class="card-body p-1">
                         
                             <!-- Player 1 Name -->
-                            <h5 class="card-title text-center mb-0 player-selected" id="player-1-name">TBD</h5>
+                            <h5 class="card-title text-center mb-0 player-selected" id="player-1-name">Player 1</h5>
                                 
                             <!-- Player 1 Description -->
                             <p class="card-text m-0 p-0 text-center"><small>HP: </small><span id="player-1-hp"></span></small></p>
@@ -209,7 +209,7 @@
                         <div class="card-body p-1">
                         
                             <!-- Player 2 Name -->
-                            <h5 class="card-title text-center mb-0" id="player-2-name">TBD</h5>
+                            <h5 class="card-title text-center mb-0" id="player-2-name">Random Selection</h5>
                                 
                             <!-- Player 2 Description -->
                             <p class="card-text m-0 p-0 text-center"><small>HP: </small><span id="player-2-hp"></span></small></p>
@@ -223,11 +223,11 @@
                         <img src="./assets/images/filler3.jpg" class="card-img-top" id="stage-pic" alt="#">
                         <div class="card-body p-1">
                                     
-                            <!-- Player 2 Name -->
+                            <!-- Stage Name -->
                             <h5 class="card-title text-center mb-0" id="stage-name">TBD</h5>
                                             
-                            <!-- Player 2 Description -->
-                            <p class="card-text m-0 p-0 text-center"><small>Status: <span id="stage-hp">TBD</span></small></p>
+                            <!-- Stage Description -->
+                            <p class="card-text m-0 p-0 text-center"><small>Status: <span id="stage-effect">TBD</span></small></p>
                                                 
                         </div>
                     </div>
@@ -240,9 +240,10 @@
                 
                 <div class="card-body p-2">
                     <h5 class="card-title text-center fight-title">Game Controller</h5>
-                    <div class="text-center"><span><a class="btn btn-warning px-1 border border-secondary text-black" id="attack-btn">Attack</a> . . . <a class="btn btn-warning px-1 border border-secondary border-left-0 text-black" id="focus-btn">Focus</a> . . . <a class="btn btn-warning px-1 border border-secondary border-left-0 text-black" id="defend-btn">Defend</a></span></div>
+                    <div class="text-center"><span><a class="btn btn-warning px-1 border border-secondary text-black" id="attack-btn">Attack</a> . . . <a class="btn btn-warning px-1 border border-secondary border-left-0 text-black" id="special-btn">Attempt Special</a> . . . <a class="btn btn-warning px-1 border border-secondary border-left-0 text-black" id="defend-btn">Defend</a></span></div>
                     <p class="text-center pt-3 mb-0"><small>Fight Stats: </small></p>
                     <p id="fight-stats" class="text-center"><small>TBD</small></p>
+                    <div class="text-center"><a class="btn btn-danger px-1 border border-secondary text-white" id="reset-btn">New Game</a></div>
                 </div>                            
              </div>
         </div>
