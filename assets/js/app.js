@@ -12,24 +12,33 @@ $("#start-game").on('click', function() {
             $("#fighter-2 div.card").addClass("bg-secondary").removeClass("border-primary");
             $("#fighter-3 div.card").addClass("bg-secondary").removeClass("border-primary");
             $("#fighter-4 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $('#fighter1-image').attr('src', './assets/images/brawler.jpeg');
+            $('#fighter1-name').text('Ozzy');
+
         }
         else if (this.id == 'ninja-btn-sel') {
             $("#fighter-2 div.card").addClass("border-primary").removeClass("bg-secondary");
             $("#fighter-1 div.card").addClass("bg-secondary").removeClass("border-primary");
             $("#fighter-3 div.card").addClass("bg-secondary").removeClass("border-primary");
             $("#fighter-4 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $('#fighter1-image').attr('src', './assets/images/ninja.jpg');
+            $('#fighter1-name').text('Tenz');
         }
         else if (this.id == 'gunner-btn-sel') {
             $("#fighter-3 div.card").addClass("border-primary").removeClass("bg-secondary");
             $("#fighter-2 div.card").addClass("bg-secondary").removeClass("border-primary");
             $("#fighter-1 div.card").addClass("bg-secondary").removeClass("border-primary");
             $("#fighter-4 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $('#fighter1-image').attr('src', './assets/images/gunner.jpg');
+            $('#fighter1-name').text('Hutch');
         }
         else if (this.id == 'warrior-btn-sel') {
             $("#fighter-4 div.card").addClass("border-primary").removeClass("bg-secondary");
             $("#fighter-2 div.card").addClass("bg-secondary").removeClass("border-primary");
             $("#fighter-3 div.card").addClass("bg-secondary").removeClass("border-primary");
             $("#fighter-1 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $('#fighter1-image').attr('src', './assets/images/warrior.jpg');
+            $('#fighter1-name').text('Jinx');
         }
     });
      
@@ -37,29 +46,38 @@ $("#start-game").on('click', function() {
     
     //Select stage  and dark overlay on non-selection
     $('#forest-btn-sel, #plains-btn-sel, #desert-btn-sel, #city-btn-sel').click(function () {
-        if (this.id == 'brawler-btn-sel') {
-            $("#fighter-1 div.card").addClass("border-primary").removeClass("bg-secondary");
-            $("#fighter-2 div.card").addClass("bg-secondary").removeClass("border-primary");
-            $("#fighter-3 div.card").addClass("bg-secondary").removeClass("border-primary");
-            $("#fighter-4 div.card").addClass("bg-secondary").removeClass("border-primary");
+        if (this.id == 'forest-btn-sel') {
+            $("#stage-1 div.card").addClass("border-primary").removeClass("bg-secondary");
+            $("#stage-2 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $("#stage-3 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $("#stage-4 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $('#stage-pic').attr('src', './assets/images/forest.jpg');
+            $('#stage-name').text('Forest');
+
         }
-        else if (this.id == 'ninja-btn-sel') {
-            $("#fighter-2 div.card").addClass("border-primary").removeClass("bg-secondary");
-            $("#fighter-1 div.card").addClass("bg-secondary").removeClass("border-primary");
-            $("#fighter-3 div.card").addClass("bg-secondary").removeClass("border-primary");
-            $("#fighter-4 div.card").addClass("bg-secondary").removeClass("border-primary");
+        else if (this.id == 'plains-btn-sel') {
+            $("#stage-2 div.card").addClass("border-primary").removeClass("bg-secondary");
+            $("#stage-1 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $("#stage-3 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $("#stage-4 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $('#stage-pic').attr('src', './assets/images/plains.jpg');
+            $('#stage-name').text('Plains');
         }
-        else if (this.id == 'gunner-btn-sel') {
-            $("#fighter-3 div.card").addClass("border-primary").removeClass("bg-secondary");
-            $("#fighter-2 div.card").addClass("bg-secondary").removeClass("border-primary");
-            $("#fighter-1 div.card").addClass("bg-secondary").removeClass("border-primary");
-            $("#fighter-4 div.card").addClass("bg-secondary").removeClass("border-primary");
+        else if (this.id == 'desert-btn-sel') {
+            $("#stage-3 div.card").addClass("border-primary").removeClass("bg-secondary");
+            $("#stage-2 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $("#stage-1 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $("#stage-4 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $('#stage-pic').attr('src', './assets/images/desert.jpg');
+            $('#stage-name').text('Desert');
         }
-        else if (this.id == 'warrior-btn-sel') {
-            $("#fighter-4 div.card").addClass("border-primary").removeClass("bg-secondary");
-            $("#fighter-2 div.card").addClass("bg-secondary").removeClass("border-primary");
-            $("#fighter-3 div.card").addClass("bg-secondary").removeClass("border-primary");
-            $("#fighter-1 div.card").addClass("bg-secondary").removeClass("border-primary");
+        else if (this.id == 'city-btn-sel') {
+            $("#stage-4 div.card").addClass("border-primary").removeClass("bg-secondary");
+            $("#stage-2 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $("#stage-3 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $("#stage-1 div.card").addClass("bg-secondary").removeClass("border-primary");
+            $('#stage-pic').attr('src', './assets/images/city.jpg');
+            $('#stage-name').text('The City');
         }
     });
     //Move stage to lower card
