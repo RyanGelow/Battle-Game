@@ -12,10 +12,10 @@ const players = [
         advantage: 'dark',
         attackName: "clobbered",
         specialName: "Combo Uppercut",
-        hp: 245,
+        hp: 400,
         defense: .9,
         hit: [15, 7],
-        special: [20, 30],
+        special: [30, 40],
     },
     {
         name: "Tenz", 
@@ -28,10 +28,10 @@ const players = [
         advantage: 'dark',
         attackName: "slashed",
         specialName: "Shurikens",
-        hp: 235,
+        hp: 350,
         defense: .9,
         hit: [8,11],
-        special: [25,25],
+        special: [35,35],
     },
     {
         name:"Hutch", 
@@ -44,10 +44,10 @@ const players = [
         advantage: 'bright',
         attackName: "pistol whipped",
         specialName: "Two Blasts",
-        hp: 200,
+        hp: 360,
         defense: .9,
         hit: [12,12],
-        special: [30,25],
+        special: [40,35],
     },
     {
         name:"Jinx", 
@@ -60,10 +60,10 @@ const players = [
         advantage: 'bright',
         attackName: "jump kicked",
         specialName: "Whip Lash",
-        hp: 225,
+        hp: 380,
         defense: .9,
         hit: [11,10],
-        special: [25,25],
+        special: [35,35],
     }
 ]
 
@@ -200,6 +200,9 @@ $('#start-fight').on('click', function() {
             let compHP = players[fightCompRef].hp;
             $('#player-2-hp').text(compHP);
             alert(compName + ' is ready to Battle!');
+            $('.game-over').removeClass('hidden');
+            $('.ready').removeClass('hidden');
+            $('#start-fight').removeClass('hidden');
 
             //Stage Elements
             if(elementShow == true) {
@@ -220,6 +223,7 @@ $('#attack-btn').on('click', function() {
     if($('#fighter-engage').hasClass("begin")) {
 
         player1HitDamage();
+        player2HitDamage();
 
         const player1Name = $("#player-1-name").text();
         const player2Name = $("#player-2-name").text();
@@ -227,9 +231,11 @@ $('#attack-btn').on('click', function() {
         $('#player-2-hp').text($('#player-2-hp').text() - player1HitDamage());
 
         $('#fight-stats').text(player1Name + " " + player1AttackName() + " " + player2Name + " and dealt " + player1HitDamage() + " damage.");
-        // console.log(player1HitDamage);
-        // console.log(player1HitDamage());
-        
+
+        $('#player-1-hp').text($('#player-1-hp').text() - player2HitDamage());
+
+        $('#fight-stats').append('<br>' + player2Name + " " + player2AttackName() + " " + player1Name + " and dealt " + player2HitDamage() + " damage.");
+
         warning();
         gameOver();
 
@@ -244,20 +250,26 @@ $('#special-btn').on('click', function() {
     if($('#fighter-engage').hasClass("begin")) {
         
         var p1Special = player1SpecialDamage();
+        var p2Special = player2SpecialDamage();
         
         let player1Name = $("#player-1-name").text();
         let player2Name = $("#player-2-name").text();
 
-        if(player1SpecialDamage() === 0) {
+        if(p1Special == 0) {
             $('#fight-stats').text(player1Name + " tried to use " + player1SpecialName() + ", but failed.");
-        }else{
+        
+        }if (p1Special > 0) {
             $('#player-2-hp').text($('#player-2-hp').text() - p1Special);
 
-
             $('#fight-stats').text(player1Name + " used " + player1SpecialName() + " to deal " + p1Special + " damage to " + player2Name + ".");
-            // console.log(player1HitDamage);
-            // console.log(player1HitDamage());
 
+        }if(p2Special == 0) {
+            $('#fight-stats').append(player2Name + " tried to use " + player1SpecialName() + ", but failed.");
+        
+        }if(p2Special > 0) {
+            $('#player-1-hp').text($('#player-1-hp').text() - p2Special);
+
+            $('#fight-stats').append(player2Name + " used " + player2SpecialName() + " to deal " + p2Special + " damage to " + player1Name + ".");
             
         }
         warning();
@@ -282,8 +294,20 @@ $('#reset-btn').on('click', function () {
     $('#fighter-engage').toggleClass("begin");
     $('#player-1 div.card').removeClass("border-secondary bg-danger bg-warning");
     $('#player-2 div.card').removeClass("border-secondary bg-danger bg-warning");    
+    $('.game-over').addClass('hidden');
+    $('.ready').text('Ready for another one? ');
 
 })     
+
+//Stage Attack
+
+$('#attack-btn, #special-btn, #defend-btn').on('click', function() {
+    if($('#fighter-engage').hasClass("begin")) {
+
+        elementHitDamage1();
+        elementHitDamage2();
+    }
+})
 
             
 // Fight Controls
@@ -314,7 +338,7 @@ let player1SpecialDamage = function() {
         if(players[i].name == $("#player-1-name").text()) {
             if(Math.random() > .6) {
                     
-                return(Math.max(Math.ceil(Math.random() * players[i].special[0]), 10) + players[i].special[1]);
+                return(Math.max(Math.ceil(Math.random() * players[i].special[0]), 15) + players[i].special[1]);
             }else{
                 return 0;
             }
@@ -427,13 +451,46 @@ var warning = function () {
 
 // Game ends at 0
 var gameOver = function () {
-    if (parseInt($('#player-1-hp').text()) <= 0) {
-        $('#player-1-hp').text("0");
-        alert("You lose.");
+    if((parseInt($('#player-1-hp').text()) <= 0) && (parseInt($('#player-2-hp').text()) <= 0)) {
+        
+        if((parseInt($('#player-1-hp').text())) === (parseInt($('#player-2-hp').text()))) {
+            $('#player-2-hp').text("0");
+            $('#player-1-hp').text("0");
 
-    } if (parseInt($('#player-2-hp').text()) <= 0) {
+            alert("You tie!");
+            $('.game-over').addClass('hidden');
+            $('#fight-stats').text('Game Over - Tie Game');
+                
+        }if((parseInt($('#player-1-hp').text())) > (parseInt($('#player-2-hp').text()))) {
+            $('#player-2-hp').text("0");
+            $('#player-1-hp').text("0");
+            console.log("you lost better");
+            alert("You win!");
+            $('.game-over').addClass('hidden');
+            $('#fight-stats').text('Game Over - Player 1 Wins');
+        
+        }if((parseInt($('#player-1-hp').text())) < (parseInt($('#player-2-hp').text()))) {
+            $('#player-2-hp').text("0");
+            $('#player-1-hp').text("0");
+            console.log("you lost worse");
+            alert("You lose.");
+            $('.game-over').addClass('hidden');
+            $('#fight-stats').text('Game Over - Player 2 Wins');
+        }
+    
+    }if (parseInt($('#player-1-hp').text()) <= 0) {
+        $('#player-1-hp').text("0");
+        console.log("only you lost");
+        alert("You lose.");
+        $('.game-over').addClass('hidden');
+        $('#fight-stats').text('Game Over - Player 2 Wins');
+
+    }if (parseInt($('#player-2-hp').text()) <= 0) {
         $('#player-2-hp').text("0");
+        console.log("only you won");
         alert("You win!");
+        $('.game-over').addClass('hidden');
+        $('#fight-stats').text('Game Over - Player 1 Wins');
     }
     return;
 }
@@ -444,14 +501,43 @@ var gameOver = function () {
 
 const stageName = $("#stage-name").text();
 
-let elementShow = Math.random() > .6;
+let elementShow = function() {
+    if(Math.random() > .6); {
+        elementRead();
+        elementTime();
+    }
+}
+
 
 let elementRead = function() {
-
+    
     for(i=0; i < stages.length; i++) {
         if(stages[i].name == stageName) {
-        $('#stage-effect').text(stages[i].elements + " are present.");
+            $('#stage-effect').text(stages[i].elements + " are present.");
         }
+    }
+}
+
+let elementTime = function() {
+    if(elementShow === true) {
+        var number = Math.max(Math.ceil((Math.random() * 30)),15);
+        var intervalId;
+        function run() {
+            clearInterval(intervalId)
+            intervalId = setInterval(decrement, 1000);
+        }
+        function decrement() {
+            number--;
+            if (number === 0) {
+                stop();
+                $('#stage-effect').text("No Dangers are present.");      
+            }
+        }
+
+        function stop() {
+            clearInterval(intervalId);
+        }
+        run();
     }
 }
 
@@ -520,15 +606,3 @@ let elementHitDamage2 = function() {
         }
     }
 }
-
-
-// Stage Attack
-// $('#attack-btn, #special-btn #defend-btn').on('click', function() {
-//     if($('#player-1').hasClass('selected')) {
-//         if($('#chosen-stage').hasClass('selected')) {
-
-//             elementHitDamage();
-//         }
-//     }
-// })
-       
