@@ -7,8 +7,8 @@ const players = [
         id: "#fighter-1",
         playerBtnSel: "brawler-btn-sel",
         image: "./assets/images/brawler.jpeg",
-        home: 'city',
-        weakness: 'plains',
+        home: 'The City',
+        weakness: 'Plains',
         advantage: 'dark',
         attackName: "clobbered",
         specialName: "Combo Uppercut",
@@ -23,8 +23,8 @@ const players = [
         id: "#fighter-2",
         playerBtnSel: "ninja-btn-sel",
         image: "./assets/images/ninja.jpg",
-        home: 'forest',
-        weakness: 'desert',
+        home: 'Forest',
+        weakness: 'Desert',
         advantage: 'dark',
         attackName: "slashed",
         specialName: "Shurikens",
@@ -39,8 +39,8 @@ const players = [
         id: "#fighter-3",
         playerBtnSel: "gunner-btn-sel",
         image: "./assets/images/gunner.jpg",
-        home: 'plains',
-        weakness: 'forest',
+        home: 'Plains',
+        weakness: 'Forest',
         advantage: 'bright',
         attackName: "pistol whipped",
         specialName: "Two Blasts",
@@ -55,8 +55,8 @@ const players = [
         id: "#fighter-4",
         playerBtnSel: "warrior-btn-sel",
         image: "./assets/images/warrior.jpg",
-        home: 'desert',
-        weakness: 'city',
+        home: 'Desert',
+        weakness: 'The City',
         advantage: 'bright',
         attackName: "jump kicked",
         specialName: "Whip Lash",
@@ -264,12 +264,12 @@ $('#special-btn').on('click', function() {
             $('#fight-stats').text(player1Name + " used " + player1SpecialName() + " to deal " + p1Special + " damage to " + player2Name + ".");
 
         }if(p2Special == 0) {
-            $('#fight-stats').append(player2Name + " tried to use " + player1SpecialName() + ", but failed.");
+            $('#fight-stats').append('<br>' + player2Name + " tried to use " + player1SpecialName() + ", but failed.");
         
         }if(p2Special > 0) {
             $('#player-1-hp').text($('#player-1-hp').text() - p2Special);
 
-            $('#fight-stats').append(player2Name + " used " + player2SpecialName() + " to deal " + p2Special + " damage to " + player1Name + ".");
+            $('#fight-stats').append('<br>' + player2Name + " used " + player2SpecialName() + " to deal " + p2Special + " damage to " + player1Name + ".");
             
         }
         warning();
@@ -296,6 +296,9 @@ $('#reset-btn').on('click', function () {
     $('#player-2 div.card').removeClass("border-secondary bg-danger bg-warning");    
     $('.game-over').addClass('hidden');
     $('.ready').text('Ready for another one? ');
+    $(playerID+" div.card").toggleClass("bg-secondary");
+    $(stageID+" div.card").toggleClass("bg-secondary");
+    $(".fighter div.card, .stage div.card").toggleClass("bg-secondary border-secondary").addClass("border-primary");
 
 })     
 
@@ -318,8 +321,18 @@ let player1HitDamage = function() {
     for(let i = 0; i < players.length; i++) {
         if(players[i].name === $("#player-1-name").text()) {
             // If critical hit at lower odds, give 3x damage.
-            
-            if(Math.random() < .25) {
+            if(players[i].home == $('#stage-name').text()) {
+                if(Math.random() < .4) {
+                
+                    return ((Math.max(Math.ceil(Math.random() * (players[i].hit[0])), 5) + (players[i].hit[1]))*2);
+                }
+            }if(players[i].weakness == $('#stage-name').text()) {
+                if(Math.random() < .1) {
+                
+                    return ((Math.max(Math.ceil(Math.random() * (players[i].hit[0])), 5) + (players[i].hit[1]))*2);
+                }
+
+            }else if(Math.random() < .25) {
                 
                 return ((Math.max(Math.ceil(Math.random() * (players[i].hit[0])), 5) + (players[i].hit[1]))*2);
                 
@@ -350,18 +363,29 @@ let player1SpecialDamage = function() {
 let player2HitDamage = function() {
     for(let i = 0; i < players.length; i++) {
         if(players[i].name == $("#player-2-name").text()) {
-            // If critical hit at low odds, give 2x damage.
-            
-            if(Math.random() < .25) {
+             // If critical hit at lower odds, give 3x damage.
+             if(players[i].home == $('#stage-name').text()) {
+                if(Math.random() < .4) {
+                
+                    return ((Math.max(Math.ceil(Math.random() * (players[i].hit[0])), 5) + (players[i].hit[1]))*2);
+                }
+            }if(players[i].weakness == $('#stage-name').text()) {
+                if(Math.random() < .1) {
+                
+                    return ((Math.max(Math.ceil(Math.random() * (players[i].hit[0])), 5) + (players[i].hit[1]))*2);
+                }
+
+            }else if(Math.random() < .25) {
                 
                 return ((Math.max(Math.ceil(Math.random() * (players[i].hit[0])), 5) + (players[i].hit[1]))*2);
                 
             // If not critical hit, run normal hit.
             } else {
+        
+                return (Math.max(Math.ceil(Math.random() * (players[i].hit[0])), 5) + (players[i].hit[1]));
 
-            return (Math.max(Math.ceil(Math.random() * (players[i].hit[0])), 5) + (players[i].hit[1]));
             }
-        }
+        } 
     }
 }
 
