@@ -264,7 +264,7 @@ $('#special-btn').on('click', function() {
             $('#fight-stats').text(player1Name + " used " + player1SpecialName() + " to deal " + p1Special + " damage to " + player2Name + ".");
 
         }if(p2Special == 0) {
-            $('#fight-stats').append('<br>' + player2Name + " tried to use " + player1SpecialName() + ", but failed.");
+            $('#fight-stats').append('<br>' + player2Name + " tried to use " + player2SpecialName() + ", but failed.");
         
         }if(p2Special > 0) {
             $('#player-1-hp').text($('#player-1-hp').text() - p2Special);
@@ -274,6 +274,32 @@ $('#special-btn').on('click', function() {
         }
         warning();
         gameOver();
+    }
+})
+
+// DEFEND BUTTON
+
+$('#defend-btn').on('click', function() {
+
+    if($('#fighter-engage').hasClass("begin")) {
+
+        player1HitDamage();
+        player2HitDamage();
+
+        const player1Name = $("#player-1-name").text();
+        const player2Name = $("#player-2-name").text();
+        
+        $('#player-2-hp').text($('#player-2-hp').text() - player1HitDamage());
+
+        $('#fight-stats').text(player1Name + " " + player1AttackName() + " " + player2Name + " and dealt " + player1HitDamage() + " damage.");
+
+        $('#player-1-hp').text($('#player-1-hp').text() - player2HitDamage());
+
+        $('#fight-stats').append('<br>' + player2Name + " " + player2AttackName() + " " + player1Name + " and dealt " + player2HitDamage() + " damage.");
+
+        warning();
+        gameOver();
+
     }
 })
 
@@ -289,8 +315,8 @@ $('#reset-btn').on('click', function () {
     $("h3.hidden").toggleClass("hidden");
     $('#start').toggleClass('hidden');
     $('.fight-title').text('Game Controller');
-    $('#player-1').toggleClass('selected');
-    $('#chosen-stage').toggleClass('selected');
+    $('#player-1').removeClass('selected');
+    $('#chosen-stage').removeClass('selected');
     $('#fighter-engage').toggleClass("begin");
     $('#player-1 div.card').removeClass("border-secondary bg-danger bg-warning");
     $('#player-2 div.card').removeClass("border-secondary bg-danger bg-warning");    
@@ -549,6 +575,7 @@ let elementTime = function() {
         function run() {
             clearInterval(intervalId)
             intervalId = setInterval(decrement, 1000);
+            elementRead();
         }
         function decrement() {
             number--;
@@ -565,9 +592,9 @@ let elementTime = function() {
     }
 }
 
-let elementHitChance1 = Math.random() > .6;
+let elementHitChance1 = Math.random() > .5;
 
-let elementHitChance2 = Math.random() > .6;
+let elementHitChance2 = Math.random() > .4;
 
 let elementHitDamage1 = function() {
     for(i=0; i < stages.length; i++) {
