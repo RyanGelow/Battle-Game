@@ -11,7 +11,7 @@
 </head>
 <body>
 <h1>Battle Game</h1>
-<h3 class="unhidden">Do you even battle? . . . Prove it . . . <a href="#" class="btn btn-primary" id="start-game">Start Game</a></h3>   
+<h3 id="start" class="unhidden">Do you even battle? . . . Prove it . . . <a href="#" class="btn btn-danger" id="start-game">Start Game</a></h3>   
 <div class="container mt-4 mb-4 hidden unhidden">
     
     <div class="row">
@@ -150,7 +150,7 @@
                             <h5 class="card-title text-center mb-0">Desert . . . <a class="btn btn-primary stage-btn text-white" id="desert-btn-sel">Select</a></h5>
                                     
                             <!-- Stage 3 Description -->
-                            <p class="card-text m-0 p-0 text-center"><small class="text-muted"> Bright. Sweeping Dunes. <br>Heat.</small></p>
+                            <p class="card-text m-0 p-0 text-center"><small class="text-muted"> Bright. Sweeping Dunes. <br>Sandstorms.</small></p>
                                 
                        </div>
 
@@ -166,7 +166,7 @@
                             <h5 class="card-title text-center mb-0">The City . . . <a class="btn btn-primary stage-btn text-white" id="city-btn-sel">Select</a></h5>
                                 
                             <!-- Stage 4 Description -->
-                            <p class="card-text m-0 p-0 text-center"><small class="text-muted"> Dark. Always Noisy.<br>Polluted.</small></p>
+                            <p class="card-text m-0 p-0 text-center"><small class="text-muted"> Dark. Always Noisy.<br>Pollution.</small></p>
                                     
                         
                         </div>
@@ -183,6 +183,8 @@
 
 <!-- End of Fighter and Stage Select -->
 
+<!-- Selected Player 1, Random Player 2, and Selected Stage -->
+
 <div class="container" id="fighter-engage">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">    
@@ -190,7 +192,7 @@
                 <div class="col p-1" id="player-1">
                     <div class="card bg-primary text-white">
                     
-                        <img src="./assets/images/filler1.jpg" class="card-img-top" id="player-1-image" alt="#">
+                        <img src="./assets/images/filler001.jpg" class="card-img-top" id="player-1-image" alt="#">
                         <div class="card-body p-1">
                         
                             <!-- Player 1 Name -->
@@ -205,11 +207,11 @@
                 <div class="col p-1" id="player-2">
                     <div class="card bg-primary text-white">
                 
-                        <img src="./assets/images/filler2.jpg" class="card-img-top" id="player-2-image" alt="#">
+                        <img src="./assets/images/filler002.jpg" class="card-img-top" id="player-2-image" alt="#">
                         <div class="card-body p-1">
                         
                             <!-- Player 2 Name -->
-                            <h5 class="card-title text-center mb-0" id="player-2-name">Random Selection</h5>
+                            <h5 class="card-title text-center mb-0" id="player-2-name">Player 2</h5>
                                 
                             <!-- Player 2 Description -->
                             <p class="card-text m-0 p-0 text-center"><small>HP: </small><span id="player-2-hp"></span></p>
@@ -220,7 +222,7 @@
                 <div class="col p-1" id="chosen-stage">
                     <div class="card bg-primary text-white">
                     
-                        <img src="./assets/images/filler3.jpg" class="card-img-top" id="stage-image" alt="#">
+                        <img src="./assets/images/filler003.jpg" class="card-img-top" id="stage-image" alt="#">
                         <div class="card-body p-1">
                                     
                             <!-- Stage Name -->
@@ -235,14 +237,14 @@
             </div>
         </div>
         
-        <div class="col-xs-12 col-sm-12 col-md-12 p-1" id="fighting">
+        <div class="col-xs-12 col-sm-12 col-md-12 p-1 hidden" id="fighting">
             <div class="card bg-primary text-white">
                 
                 <div class="card-body p-2">
                     <h5 class="card-title text-center fight-title">Game Controller</h5>
                     <div class="text-center"><span><a class="btn btn-warning px-1 border border-secondary text-black" id="attack-btn">Attack</a> . . . <a class="btn btn-warning px-1 border border-secondary border-left-0 text-black" id="special-btn">Attempt Special</a> . . . <a class="btn btn-warning px-1 border border-secondary border-left-0 text-black" id="defend-btn">Defend</a></span></div>
                     <p class="text-center pt-3 mb-0"><small>Fight Stats: </small></p>
-                    <p id="fight-stats" class="text-center"><small>TBD</small></p>
+                    <p id="fight-stats" class="text-center"><small></small></p>
                     <div class="text-center"><a class="btn btn-danger px-1 border border-secondary text-white" id="reset-btn">New Game</a></div>
                 </div>                            
              </div>
