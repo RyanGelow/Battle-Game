@@ -283,19 +283,29 @@ $('#defend-btn').on('click', function() {
 
     if($('#fighter-engage').hasClass("begin")) {
 
-        player1HitDamage();
-        player2HitDamage();
+        let player1Def = player1Defense();
+        let player2Def = player2Defense();
 
         const player1Name = $("#player-1-name").text();
         const player2Name = $("#player-2-name").text();
         
-        $('#player-2-hp').text($('#player-2-hp').text() - player1HitDamage());
+        $('#player-1-hp').text($('#player-1-hp').text() - player1Def);
 
-        $('#fight-stats').text(player1Name + " " + player1AttackName() + " " + player2Name + " and dealt " + player1HitDamage() + " damage.");
+        if(player1Def < 0) {
+            $('#fight-stats').text(player1Name + " successfully defended " + player2Name + "'s attack and gained " + player1Def * -1 + " HP.");        
+        } else {
+            $('#fight-stats').text(player1Name + " got hit by " + player2Name + " for " + player1Def + " damage.");
 
-        $('#player-1-hp').text($('#player-1-hp').text() - player2HitDamage());
+        }
 
-        $('#fight-stats').append('<br>' + player2Name + " " + player2AttackName() + " " + player1Name + " and dealt " + player2HitDamage() + " damage.");
+        $('#player-2-hp').text($('#player-2-hp').text() - player2Def);
+
+        if(player2Def < 0) {
+            $('#fight-stats').append("<br>" + player2Name + " successfully defended " + player1Name + "'s attack and gained " + player2Def * -1 + " HP.");        
+        } else {
+            $('#fight-stats').append("<br>" + player2Name + " got hit by " + player1Name + " for " + player2Def + " damage.");
+
+        }
 
         warning();
         gameOver();
@@ -385,6 +395,19 @@ let player1SpecialDamage = function() {
     }
 }
 
+let player1Defense = function() {
+    for(let i = 0; i < players.length; i++) {
+        if(players[i].name == $("#player-2-name").text()) {
+            if(Math.random() > .2) {
+                    
+                return(Math.max(Math.ceil(Math.random() * players[i].special[0]), 15) + players[i].special[1])*-1;
+            }else{
+                return(Math.max(Math.ceil(Math.random() * players[i].hit[0]), 15) + players[i].hit[1]);
+            }
+        }
+    }
+}
+
 //Player 2 fight stats
 let player2HitDamage = function() {
     for(let i = 0; i < players.length; i++) {
@@ -423,6 +446,19 @@ let player2SpecialDamage = function() {
                 return (Math.max(Math.ceil(Math.random() * players[i].special[0]), 10) + players[i].special[1]);
             }else{
                 return 0;
+            }
+        }
+    }
+}
+
+let player2Defense = function() {
+    for(let i = 0; i < players.length; i++) {
+        if(players[i].name == $("#player-1-name").text()) {
+            if(Math.random() > .3) {
+                    
+                return(Math.max(Math.ceil(Math.random() * players[i].special[0]), 15) + players[i].special[1])*-1;
+            }else{
+                return(Math.max(Math.ceil(Math.random() * players[i].hit[0]), 15) + players[i].hit[1]);
             }
         }
     }
