@@ -205,11 +205,7 @@ $('#start-fight').on('click', function() {
             $('#start-fight').removeClass('hidden');
 
             //Stage Elements
-            if(elementShow == true) {
-                elementRead();
-            }else{
-                $('#stage-effect').text("No Dangers are present.");
-            }
+            elementTime()
             
         }
     }
@@ -236,6 +232,9 @@ $('#attack-btn').on('click', function() {
 
         $('#fight-stats').append('<br>' + player2Name + " " + player2AttackName() + " " + player1Name + " and dealt " + player2HitDamage() + " damage.");
 
+        if(elementShow === false) {
+            elementTime();
+        }
         warning();
         gameOver();
 
@@ -272,6 +271,11 @@ $('#special-btn').on('click', function() {
             $('#fight-stats').append('<br>' + player2Name + " used " + player2SpecialName() + " to deal " + p2Special + " damage to " + player1Name + ".");
             
         }
+
+        if(elementShow === false) {
+            elementTime();
+        }
+
         warning();
         gameOver();
     }
@@ -307,6 +311,10 @@ $('#defend-btn').on('click', function() {
 
         }
 
+        if(elementShow === false) {
+            elementTime();
+        }
+
         warning();
         gameOver();
 
@@ -318,8 +326,7 @@ $('#defend-btn').on('click', function() {
 $('#reset-btn').on('click', function () {
     // Clicking the button shows characters and stages
     // Clear player 1, 2, and chosen-stage
-
-
+    
     //Reveal players and stages
     $("div.hidden").toggleClass("hidden");
     $("h3.hidden").toggleClass("hidden");
@@ -332,8 +339,20 @@ $('#reset-btn').on('click', function () {
     $('#player-2 div.card').removeClass("border-secondary bg-danger bg-warning");    
     $('.game-over').addClass('hidden');
     $('.ready').text('Ready for another one? ');
-    $(playerID+" div.card").toggleClass("bg-secondary");
-    $(stageID+" div.card").toggleClass("bg-secondary");
+    
+    for(let i = 0; i < players.length; i++) {
+        if(($('#brawler-btn-sel, #ninja-btn-sel, #gunner-btn-sel, #warrior-btn-sel').id) == players[i].playerBtnSel) {
+            let playerID = players[i].id;
+            $(playerID+" div.card").addClass("border-primary").removeClass("bg-secondary");
+        }    
+    }
+
+    for(let i = 0; i < stages.length; i++) {
+        if(($('#forest-btn-sel, #plains-btn-sel, #desert-btn-sel, #city-btn-sel').id) == stages[i].stageBtnSel) {
+            let stageID = stages[i].id;
+            $(stageID+" div.card").addClass("border-primary").removeClass("bg-secondary");
+        }
+    }
     $(".fighter div.card, .stage div.card").toggleClass("bg-secondary border-secondary").addClass("border-primary");
 
 })     
@@ -517,9 +536,134 @@ const player2SpecialName = function () {
     }
 }
 
+// Element Impact
+
+const stageName = $("#stage-name").text();
+
+elementShow = false;
+
+let elementShown = function(){
+    if(Math.random() > .6) {
+        elementShow = true;
+    }else{
+        elementShow = false;
+    }
+}
+
+let elementRead;
+
+let elementWrite = function() {
+    
+    for(i=0; i < stages.length; i++) {
+        if(stages[i].name == stageName) {
+            elementRead = $('#stage-effect').text(stages[i].elements + " are present.");
+        }
+    }
+}
+
+let elementTime = function() {
+    elementShown()
+    if(elementShow === true) {
+        var number = Math.max(Math.ceil((Math.random() * 30)),15);
+        var intervalId;
+        function run() {
+            clearInterval(intervalId)
+            intervalId = setInterval(decrement, 1000);
+            elementWrite();
+        }
+        function decrement() {
+            number--;
+            if (number === 0) {
+                stop();
+                elementShow = false;
+                $('#stage-effect').text("No Dangers are present.");      
+            }
+        }
+
+        function stop() {
+            clearInterval(intervalId);
+            elementShow = false;
+        }
+        run();
+    }
+}
+
+let elementHitChance = false;
+
+let elementHitChance1 = function(){
+    if(Math.random() > .5) {
+        elementHitChance = true;
+    }else{
+        elementHitChance = false;
+    }
+}
+
+let elementHitChance2 = function(){
+    if(Math.random() > .5) {
+        elementHitChance = true;
+    }else{
+        elementHitChance = false;
+    }
+}
+
+let elementHitDamage1 = function() {
+    for(i=0; i < stages.length; i++) {
+        if(stages[i].name == stageName) {
+ 
+            let player1Name = $("#player-1-name").text();
+    
+            if(elementShow === true) {
+
+                elementHitChance1()
+                if(elementHitChance === true) {
+                    
+                    let stageHitDam = (Math.max(Math.ceil(Math.random() * stages[i].hit[0]), 1) + stages[i].hit[1]);
+                
+                    return $('#fight-stats').append(player1Name + ' hit with ' + stages[i].elements + ' for ' + stageHitDam + ' damage.');    
+                    
+                } else {
+                   
+                    return $('#fight-stats').append(stages[i].elements + ' just missed ' + player1Name);
+                }
+            }   
+        }
+    }
+}
+
+let elementHitDamage2 = function() {
+    for(i=0; i < stages.length; i++) {
+        if(stages[i].name == stageName) {
+ 
+            let player2Name = $("#player-2-name").text();
+    
+            if(elementShow === true) {
+
+                elementHitChance2()
+                if(elementHitChance === true) {
+                                    
+                    let stageHitDam = (Math.max(Math.ceil(Math.random() * stages[i].hit[0]), 1) + stages[i].hit[1]);
+                
+                    $('#fight-stats').append(player2Name + ' hit with ' + stages[i].elements + ' for ' + stageHitDam + ' damage.');
+                    
+                    return stageHitDam;
+                    
+                } else {
+                    return $('#fight-stats').append(stages[i].elements + ' just miss ' + player2Name);
+                }
+            }  
+        }
+    }
+}
+
 //Warning
 
 var warning = function () {
+    if (parseInt($('#player-1-hp').text()) > 75) {
+        $('#player-1 div.card').removeClass("border-secondary bg-warning bg-danger").addClass("border-primary bg-primary");
+    }
+    if (parseInt($('#player-2-hp').text()) > 75) {
+        $('#player-2 div.card').removeClass("border-secondary bg-warning bg-danger").addClass("border-primary bg-primary");
+    }
     if (parseInt($('#player-1-hp').text()) <= 75) {
         $('#player-1 div.card').addClass("border-secondary bg-warning");
     } 
@@ -579,117 +723,4 @@ var gameOver = function () {
         $('#fight-stats').text('Game Over - Player 1 Wins');
     }
     return;
-}
-
-
-
-// Element Impact
-
-const stageName = $("#stage-name").text();
-
-let elementShow = function() {
-    if(Math.random() > .6); {
-        elementRead();
-        elementTime();
-    }
-}
-
-
-let elementRead = function() {
-    
-    for(i=0; i < stages.length; i++) {
-        if(stages[i].name == stageName) {
-            $('#stage-effect').text(stages[i].elements + " are present.");
-        }
-    }
-}
-
-let elementTime = function() {
-    if(elementShow === true) {
-        var number = Math.max(Math.ceil((Math.random() * 30)),15);
-        var intervalId;
-        function run() {
-            clearInterval(intervalId)
-            intervalId = setInterval(decrement, 1000);
-            elementRead();
-        }
-        function decrement() {
-            number--;
-            if (number === 0) {
-                stop();
-                $('#stage-effect').text("No Dangers are present.");      
-            }
-        }
-
-        function stop() {
-            clearInterval(intervalId);
-        }
-        run();
-    }
-}
-
-let elementHitChance1 = Math.random() > .5;
-
-let elementHitChance2 = Math.random() > .4;
-
-let elementHitDamage1 = function() {
-    for(i=0; i < stages.length; i++) {
-        if(stages[i].name == stageName) {
- 
-            let player1Name = $("#player-1-name").text();
-    
-            if(elementShow === true) {
-
-                $('#stage-effect').text(stages[i].elements + " are present.");
-
-                if(elementHitChance1 === true) {
-                    
-                    
-                    let stageHitDam = (Math.max(Math.ceil(Math.random() * stages[i].special[0]), 10) + stages[i].special[1]);
-                
-                    $('#fight-stats').append(player1Name + ' hit with ' + stages[i].elements + ' for ' + stageHitDam + ' damage.');
-                    
-                    return stageHitDam;
-                    
-                } else {
-                    return $('#fight-stats').append(stages[i].elements + ' just miss ' + player1Name);
-                }
-
-                
-            } else {
-                return $('#stage-effect').text("No dangers are present.");
-
-            }
-          
-        }
-    }
-}
-
-let elementHitDamage2 = function() {
-    for(i=0; i < stages.length; i++) {
-        if(stages[i].name == stageName) {
- 
-            let player2Name = $("#player-2-name").text();
-    
-            if(elementShow === true) {
-
-                if(elementHitChance2 === true) {
-                    
-                    
-                    let stageHitDam = (Math.max(Math.ceil(Math.random() * stages[i].special[0]), 10) + stages[i].special[1]);
-                
-                    $('#fight-stats').append(player2Name + ' hit with ' + stages[i].elements + ' for ' + stageHitDam + ' damage.');
-                    
-                    return stageHitDam;
-                    
-                } else {
-                    $('#fight-stats').append(stages[i].elements + ' just miss ' + player1Name);
-                }
-
-            } else {
-                $('#stage-effect').text("No dangers are present.");
-
-            }  
-        }
-    }
 }
